@@ -17,8 +17,8 @@
           inherit system;
         };
 
-        # 0.3.7+ does exist, but I couldn't get it to work 🤷
-        otel-tui-version = "0.3.6";
+        # Version >=0.4 exists, but I couldn't get it working for some reason.
+        otel-tui-version = "0.3.10";
 
         otel-tui = pkgs.buildGo123Module {
           pname = "otel-tui";
@@ -28,14 +28,14 @@
             owner = "ymtdzzz";
             repo = "otel-tui";
             tag = "v${otel-tui-version}";
-            sha256 = "sha256-K/Cwdu/BDxS9FniQJxp005V+HoZFiu+S5/yRZg3aOz8=";
+            sha256 = "sha256-Xv+AfXT5fMgovGB/02btRDujwWJK6UgZ53xYtjp+qcY=";
           };
-          vendorHash = "sha256-zHBM+nVwYuTTeObb74T6Lp9et9qDJjtZlxEkvYovhns=";
 
-          modRoot = ".";
+          vendorHash = "sha256-f9inY8qVcF8d3HCKp5EA+d/+dMo+uI8bbJedhVnHlY4=";
+
           subPackages = [ "." ];
 
-          # Disable Go Workspaces; Not supported by the nix build system (yet?).
+          # Do not use Go Workspaces as they're not supported by the nix build system.
           env.GOWORK = "off";
 
           buildInputs = pkgs.lib.optionals pkgs.stdenv.isLinux [ pkgs.xorg.libX11 ];
@@ -47,6 +47,9 @@
           default = otel-tui;
         };
         defaultPackage = otel-tui;
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ otel-tui ];
+        };
       }
     );
 }
