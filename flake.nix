@@ -18,7 +18,7 @@
         };
 
         # 0.3.7+ does exist, but I couldn't get it to work 🤷
-        otel-tui-version = "0.3.6";
+        otel-tui-version = "0.4.1";
 
         otel-tui = pkgs.buildGo123Module {
           pname = "otel-tui";
@@ -28,9 +28,10 @@
             owner = "ymtdzzz";
             repo = "otel-tui";
             tag = "v${otel-tui-version}";
-            sha256 = "sha256-K/Cwdu/BDxS9FniQJxp005V+HoZFiu+S5/yRZg3aOz8=";
+            sha256 = "sha256-oe0V/iTo7LPbajLVRbjQTTqDaht/SnONAaaKwrMWRKI=";
           };
-          vendorHash = "sha256-zHBM+nVwYuTTeObb74T6Lp9et9qDJjtZlxEkvYovhns=";
+
+          vendorHash = "sha256-yUD+9tvBr2U1U7+WXqz6sKt9EBXGQCWVyYRYCDRENf4=";
 
           modRoot = ".";
           subPackages = [ "." ];
@@ -47,6 +48,9 @@
           default = otel-tui;
         };
         defaultPackage = otel-tui;
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ otel-tui ];
+        };
       }
     );
 }
