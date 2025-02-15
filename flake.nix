@@ -17,8 +17,7 @@
           inherit system;
         };
 
-        # Version >=0.4 exists, but I couldn't get it working for some reason.
-        otel-tui-version = "0.3.10";
+        otel-tui-version = "0.4.1";
 
         otel-tui = pkgs.buildGo123Module {
           pname = "otel-tui";
@@ -28,10 +27,10 @@
             owner = "ymtdzzz";
             repo = "otel-tui";
             tag = "v${otel-tui-version}";
-            sha256 = "sha256-Xv+AfXT5fMgovGB/02btRDujwWJK6UgZ53xYtjp+qcY=";
+            sha256 = "sha256-oe0V/iTo7LPbajLVRbjQTTqDaht/SnONAaaKwrMWRKI=";
           };
 
-          vendorHash = "sha256-f9inY8qVcF8d3HCKp5EA+d/+dMo+uI8bbJedhVnHlY4=";
+          vendorHash = "sha256-yUD+9tvBr2U1U7+WXqz6sKt9EBXGQCWVyYRYCDRENf4=";
 
           subPackages = [ "." ];
 
