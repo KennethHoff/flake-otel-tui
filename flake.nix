@@ -30,12 +30,18 @@
             sha256 = "sha256-oe0V/iTo7LPbajLVRbjQTTqDaht/SnONAaaKwrMWRKI=";
           };
 
-          vendorHash = "sha256-yUD+9tvBr2U1U7+WXqz6sKt9EBXGQCWVyYRYCDRENf4=";
+          vendorHash = "sha256-3E20AjpS8SJaQsYf9gPNLyEUT/mVPQTqTEQzT91Bl1Y=";
+
+          # In order to work with Go Workspaces.
+          overrideModAttrs = (
+            _: {
+              buildPhase = ''
+                go work vendor
+              '';
+            }
+          );
 
           subPackages = [ "." ];
-
-          # Do not use Go Workspaces as they're not supported by the nix build system.
-          env.GOWORK = "off";
 
           buildInputs = pkgs.lib.optionals pkgs.stdenv.isLinux [ pkgs.xorg.libX11 ];
         };
